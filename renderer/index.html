@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Image Resizer</h1>
+            <p>이미지 일괄 크기 조정 도구</p>
+        </header>
+
+        <main>
+            <section class="file-selection">
+                <h2>파일 선택</h2>
+                <button id="selectFiles" class="btn btn-primary">이미지 파일 선택</button>
+                <div id="selectedFiles" class="file-list"></div>
+            </section>
+
+            <section class="resize-options">
+                <h2>크기 조정 옵션</h2>
+                
+                <div class="form-group">
+                    <label>크기 조정 방식:</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="resizeMode" value="pixels" checked>
+                            픽셀 단위
+                        </label>
+                        <label>
+                            <input type="radio" name="resizeMode" value="percentage">
+                            백분율
+                        </label>
+                    </div>
+                </div>
+
+                <div id="pixelsOptions" class="resize-mode-options">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="width">가로 (px):</label>
+                            <input type="number" id="width" min="1" placeholder="자동">
+                        </div>
+                        <div class="form-group">
+                            <label for="height">세로 (px):</label>
+                            <input type="number" id="height" min="1" placeholder="자동">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="percentageOptions" class="resize-mode-options hidden">
+                    <div class="form-group">
+                        <label for="percentage">크기 (%):</label>
+                        <input type="number" id="percentage" min="1" max="1000" value="100">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="format">출력 포맷:</label>
+                    <select id="format">
+                        <option value="">원본 포맷 유지</option>
+                        <option value="jpg">JPEG</option>
+                        <option value="png">PNG</option>
+                        <option value="webp">WebP</option>
+                        <option value="bmp">BMP</option>
+                        <option value="tiff">TIFF</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quality">품질 (1-100):</label>
+                    <input type="number" id="quality" min="1" max="100" value="90">
+                </div>
+
+                <div class="form-group">
+                    <label>출력 폴더:</label>
+                    <button id="selectOutputDir" class="btn btn-secondary">폴더 선택</button>
+                    <div id="selectedOutputDir" class="selected-path">원본 파일과 같은 폴더</div>
+                </div>
+            </section>
+
+            <section class="actions">
+                <button id="processImages" class="btn btn-primary btn-large" disabled>이미지 처리 시작</button>
+            </section>
+
+            <section class="progress hidden" id="progressSection">
+                <h2>처리 진행상황</h2>
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <div id="progressText" class="progress-text">0 / 0</div>
+                <div id="currentFile" class="current-file"></div>
+            </section>
+
+            <section class="results hidden" id="resultsSection">
+                <h2>처리 결과</h2>
+                <div id="resultsList" class="results-list"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
